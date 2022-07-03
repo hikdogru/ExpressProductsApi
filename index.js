@@ -29,18 +29,18 @@ app.get("/", (req, res)=> {
 })
 
 app.get("/bestSellers", (req, res) => {
-    console.log("Database_URL", remoteMongoConnectionString);
-    Product.find({}, (err, products) => {
+    res.send(remoteMongoConnectionString);
+    // Product.find({}, (err, products) => {
 
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.header("Content-Type", 'application/json');
-            res.json(products[0]);
-        }
+    //     if (err) {
+    //         console.log(err);
+    //     }
+    //     else {
+    //         res.header("Content-Type", 'application/json');
+    //         res.json(products[0]);
+    //     }
 
-    });
+    // });
 
 })
 
