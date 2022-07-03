@@ -28,16 +28,16 @@ app.get("/", (req, res)=> {
     res.send("Hello!");
 })
 
-app.get("/bestSellers", async (req, res) => {
+app.get("/bestSellers", (req, res) => {
     console.log("Database_URL", remoteMongoConnectionString);
-    await Product.find({}, (err, products) => {
+    Product.find({}, (err, products) => {
 
         if (err) {
             console.log(err);
         }
         else {
             res.header("Content-Type", 'application/json');
-            res.json(products);
+            res.json(products[0]);
         }
 
     });
