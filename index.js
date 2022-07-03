@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV !== "production"){
+if(process.env.NODE_ENV === "production"){
     require("dotenv").config();
 }
 
@@ -29,7 +29,8 @@ app.get("/", (req, res)=> {
 })
 
 app.get("/bestSellers", async (req, res) => {
-    const products = await Product.find({}, (err, products) => {
+    console.log("Database_URL", remoteMongoConnectionString);
+    await Product.find({}, (err, products) => {
 
         if (err) {
             console.log(err);
