@@ -24,6 +24,10 @@ mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifie
     });
 
 
+app.get("/", (req, res)=> {
+    res.send("Hello!");
+})
+
 app.get("/bestSellers", (req, res) => {
     const products = Product.find({}, (err, products) => {
 
