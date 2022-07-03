@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 app.set('json spaces', 2)
 
 
-const remoteMongoConnectionString = process.env.DB_URL;
+const remoteMongoConnectionString = process.env.DB_URL || "mongodb://localhost:27017/shopApp";
 mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Mongo Connection Open!!!");
@@ -41,6 +41,6 @@ app.get("/bestSellers", (req, res) => {
 
 
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log("App is listening!");
 });
