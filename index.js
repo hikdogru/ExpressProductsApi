@@ -28,8 +28,8 @@ app.get("/", (req, res)=> {
     res.send("Hello!");
 })
 
-app.get("/bestSellers", (req, res) => {
-    const products = Product.find({}, (err, products) => {
+app.get("/bestSellers", async (req, res) => {
+    const products = await Product.find({}, (err, products) => {
 
         if (err) {
             console.log(err);
