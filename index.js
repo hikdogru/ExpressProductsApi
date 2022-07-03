@@ -1,4 +1,4 @@
-if(process.env.NODE_ENV === "production"){
+if (process.env.NODE_ENV === "production") {
     require("dotenv").config();
 }
 
@@ -24,25 +24,21 @@ mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifie
     });
 
 
-app.get("/", (req, res)=> {
+app.get("/", (req, res) => {
     res.send("Hello!");
 })
 
 app.get("/bestSellers", (req, res) => {
     Product.find({}, (err, products) => {
-        res.send(products);
+
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.header("Content-Type", 'application/json');
+            res.json(products);
+        }
     });
-    // Product.find({}, (err, products) => {
-
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    //     else {
-    //         res.header("Content-Type", 'application/json');
-    //         res.json(products[0]);
-    //     }
-
-    // });
 
 })
 
