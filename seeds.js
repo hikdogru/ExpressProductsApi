@@ -1,8 +1,12 @@
 const Product = require("./models/product");
 const mongoose = require("mongoose");
 const puppeteer = require('puppeteer')
+if(process.env.NODE_ENV !== "production"){
+    require("dotenv").config();
+}
 
-mongoose.connect("mongodb://localhost:27017/shopApp", { useNewUrlParser: true, useUnifiedTopology: true })
+const remoteMongoConnectionString = process.env.DB_URL;
+mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("Mongo Connection Open!!!");
     }).catch((err) => {
