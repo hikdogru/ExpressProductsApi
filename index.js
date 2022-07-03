@@ -29,7 +29,9 @@ app.get("/", (req, res)=> {
 })
 
 app.get("/bestSellers", (req, res) => {
-    res.send(remoteMongoConnectionString);
+    Product.find({}, (err, products) => {
+        res.send(products);
+    });
     // Product.find({}, (err, products) => {
 
     //     if (err) {
