@@ -11,11 +11,16 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    productType : {
+        type : String,
+        enum : ["bestSeller", "electronic"]
+    },
     description: String,
     images: [String],
     rating: String
     // categories: [String]
 });
+
 
 
 const Product = new mongoose.model("Product", productSchema);

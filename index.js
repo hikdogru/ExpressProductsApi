@@ -29,20 +29,27 @@ app.get("/", (req, res) => {
 })
 
 app.get("/bestSellers", (req, res) => {
-    Product.find({}, (err, products) => {
+    Product.find({ productType: "bestSeller" }, (err, products) => {
 
         if (err) {
             console.log(err);
         }
-        else {
-            res.header("Content-Type", 'application/json');
+        else {            
             res.json(products);
         }
     });
-
 })
 
-
+app.get("/electronic", (req, res) => {
+    Product.find({ productType: "electronic" }, (err, products) => {
+        if (err) {
+            console.log(err);
+        }
+        else {            
+            res.json(products);
+        }
+    });
+})
 
 app.listen(process.env.PORT || port, () => {
     console.log("App is listening!");
