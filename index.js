@@ -11,6 +11,7 @@ const port = 2000;
 const Product = require("./models/product");
 const swaggerUi = require("swagger-ui-express"),
     swaggerDocument = require("./swagger.json");
+const cors = require('cors');
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -23,6 +24,9 @@ app.use(
     swaggerUi.setup(swaggerDocument)
 );
 
+app.use(cors({
+    origin: "*"
+}));
 
 const remoteMongoConnectionString = process.env.DB_URL || "mongodb://localhost:27017/shopApp";
 mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -38,7 +42,7 @@ app.get("/", (req, res) => {
 })
 
 app.get("/bestSellers", async (req, res) => {
-    const { page = 1, limit = 10 } = req.query;    
+    const { page = 1, limit = 10 } = req.query;
     const productCount = await Product.find({ productType: "bestSeller" }).count().exec();
     const totalPages = Math.ceil(productCount / limit);
     Product.find({ productType: "bestSeller" }, (err, products) => {
