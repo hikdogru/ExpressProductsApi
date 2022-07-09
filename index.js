@@ -9,10 +9,19 @@ const path = require("path");
 const mongoose = require("mongoose");
 const port = 2000;
 const Product = require("./models/product");
+const swaggerUi = require("swagger-ui-express"),
+    swaggerDocument = require("./swagger.json");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set('json spaces', 2)
+
+
+app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerDocument)
+);
 
 
 const remoteMongoConnectionString = process.env.DB_URL || "mongodb://localhost:27017/shopApp";
@@ -25,11 +34,11 @@ mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifie
 
 
 app.get("/", (req, res) => {
-    res.send("Hello!");
+    res.redirect("/api-docs");
 })
 
 app.get("/bestSellers", async (req, res) => {
-    const { page = 1, limit = 10 } = req.query;
+    const { page = 1, limit = 10 } = req.query;    
     const productCount = await Product.find({ productType: "bestSeller" }).count().exec();
     const totalPages = Math.ceil(productCount / limit);
     Product.find({ productType: "bestSeller" }, (err, products) => {
@@ -75,11 +84,12 @@ app.get("/electronic", async (req, res) => {
 })
 
 app.get("/search", async (req, res) => {
-    const { q } = req.query;    
-    const query = { name: new RegExp(q, 'i')};
-    console.log(query);
+    const { q } = req.query;
+    const query = { name: new RegExp(q, 'i') };
     const product = await Product.find(query).exec();
-    res.json(product);
+    res.json((Array.from(product)).filter((value, index, array) => {
+        return array.indexOf(value) === index
+    }));
 })
 
 
