@@ -74,6 +74,15 @@ app.get("/electronic", async (req, res) => {
         .clone();
 })
 
+app.get("/search", async (req, res) => {
+    const { q } = req.query;    
+    const query = { name: new RegExp(q, 'i')};
+    console.log(query);
+    const product = await Product.find(query).exec();
+    res.json(product);
+})
+
+
 app.listen(process.env.PORT || port, () => {
     console.log("App is listening!");
 });
