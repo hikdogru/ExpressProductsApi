@@ -427,7 +427,10 @@
                     "type": "string"
                 },
                 "images": {
-                    "type": "string"
+                    "type": "array",
+                    "items" : {
+                        "type" : "string"
+                    }
                 },
                 "price": {
                     "type": "number"
