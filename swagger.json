@@ -9,7 +9,7 @@
             "url": "https://opensource.org/licenses/MIT"
         }
     },
-    "host": "localhost:2000",
+    "host": "localhost:2000/",
     "basePath": "/",
     "tags": [
         {
@@ -27,7 +27,86 @@
         "application/json"
     ],
     "paths": {
-        "/bestSellers": {
+        "/allproducts": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get all products in system",                
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/allproducts?page={page}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get paginated all products in system",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "required": true,
+                        "description": "Page that we want to get",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/allproducts?page={page}&limit={limit}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get paginated all products by limit in system",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "required": true,
+                        "description": "Page that we want to get",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "path",
+                        "required": true,
+                        "description": "Limit that we want to get",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/bestSellers": {
             "get": {
                 "tags": [
                     "Products"
@@ -43,7 +122,7 @@
                 }
             }
         },
-        "/bestSellers?page={page}": {
+        "/products/bestSellers?page={page}": {
             "get": {
                 "tags": [
                     "Products"
@@ -70,7 +149,7 @@
                 }
             }
         },
-        "/bestSellers?page={page}&limit={limit}": {
+        "/products/bestSellers?page={page}&limit={limit}": {
             "get": {
                 "tags": [
                     "Products"
@@ -105,16 +184,243 @@
                     }
                 }
             }
+        },
+        "/products/electronic": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get Electronic Products in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/electronic?page={page}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get Paginated Electronic Products in system",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "required": true,
+                        "description": "Page that we want to get",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/electronic?page={page}&limit={limit}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get Paginated Electronic Products by limit in system",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "path",
+                        "required": true,
+                        "description": "Page that we want to get",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "path",
+                        "required": true,
+                        "description": "Limit that we want to get",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/products?q={q}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Search all products in system",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "path",
+                        "required": true,
+                        "description": "Search Query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get product by id in system",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Product Id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/products": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Save Product",
+                "parameters": [
+                    {
+                        "name": "model",
+                        "in": "body",
+                        "required": true,
+                        "description": "Product Name",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/update/{id}": {
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update Product",
+                "parameters": [
+                    {
+                        "name": "model",
+                        "in": "body",
+                        "required": true,
+                        "description": "Product Name",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Product Id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
+        },
+        "/products/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Delete Product",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Product Id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Products"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
         "Product": {
             "required": [
                 "name",
-                "price"
+                "price",
+                "productType"
             ],
             "properties": {
                 "name": {
+                    "type": "string"
+                },
+                "productType": {
                     "type": "string"
                 },
                 "description": {
