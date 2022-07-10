@@ -87,10 +87,18 @@ app.get("/electronic", async (req, res) => {
         .clone();
 })
 
+app.get("/products/:id", async (req, res) => {
+    const { id } = req.params;
+    const products = await Product.findById(id);
+    if (products === null)
+        res.status(404).send("<h3 style='color:red'>Product not found!</h3>");
+    res.send(products);
+});
+
 app.get("/search", async (req, res) => {
     const { q } = req.query;
     const query = { name: new RegExp(q, 'i') };
-    const product = await Product.find(query).exec();
+    const product = await Product.find(query);
     res.json((Array.from(product)).filter((value, index, array) => {
         return array.indexOf(value) === index
     }));

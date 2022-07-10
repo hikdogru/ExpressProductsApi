@@ -3,7 +3,7 @@
     "info": {
         "version": "1.0.0",
         "title": "My Product API Project",
-        "description": "My Product Project Application API",
+        "description": "My Product API Project",
         "license": {
             "name": "MIT",
             "url": "https://opensource.org/licenses/MIT"
