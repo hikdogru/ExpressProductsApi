@@ -8,7 +8,7 @@ const scrape = function (url, productSelector, nameSelector, priceSelector, rati
 
     (async () => {
         const browser = await puppeteer.launch({
-            args: ["--no-sandbox", "--disabled-setupid-sandbox"]
+            args: ["--no-sandbox", "--disabled-setupid-sandbox"] 
         });
         const page = await browser.newPage();
         page.on('console', async msg => {
