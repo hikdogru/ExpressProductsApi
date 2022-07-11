@@ -25,7 +25,7 @@ app.use(
     swaggerUi.setup(swaggerDocument)
 );
 
-app.use(cors({
+app.use(/.*/, cors({
     origin: "*"
 }));
 
