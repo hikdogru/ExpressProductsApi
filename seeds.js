@@ -7,7 +7,7 @@ mongo.connectToMongo;
 const scrape = function (url, productSelector, nameSelector, priceSelector, ratingSelector, imageSelector, productType) {
 
     (async () => {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ignoreDefaultArgs: ['--disable-extensions']});
         const page = await browser.newPage();
         page.on('console', async msg => {
             const args = msg.args();
