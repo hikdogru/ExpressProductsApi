@@ -296,7 +296,7 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Get product by id in system",
+                "summary": "Get a single product by id in system",
                 "parameters": [
                     {
                         "name": "id",

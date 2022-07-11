@@ -12,6 +12,7 @@ const Product = require("./models/product");
 const swaggerUi = require("swagger-ui-express"),
     swaggerDocument = require("./swagger.json");
 const cors = require('cors');
+const cron = require("./cron-ping");
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -41,6 +42,7 @@ mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifie
 
 
 app.get("/", (req, res) => {
+    cron.schedule();
     res.redirect("/api-docs");
 });
 

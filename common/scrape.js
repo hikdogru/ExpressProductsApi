@@ -20,11 +20,14 @@ const getBestSellers = () => {
 };
 
 
-const getElectronicProducts = ()=> {
+const getElectronicProducts = () => {
     scrape.scrape(electronicUrl, electronicProductsSelector,
         electronicProductNameSelector, electronicProductPriceSelector,
         electronicProductRatingSelector, electronicProductImageSelector, "electronic")
 }
 
-getBestSellers();
-getElectronicProducts();
+
+module.exports = {
+    getBestSellers,
+    getElectronicProducts
+}
