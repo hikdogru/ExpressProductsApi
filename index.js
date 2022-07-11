@@ -41,8 +41,7 @@ mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifie
     });
 
 
-app.get("/", (req, res) => {
-    cron.schedule();
+app.get("/", (req, res) => {    
     res.redirect("/api-docs");
 });
 
@@ -185,4 +184,5 @@ app.delete("/products/delete/:id", async (req, res) => {
 
 app.listen(process.env.PORT || port, () => {
     console.log("App is listening!");
+    cron.schedule();
 });
