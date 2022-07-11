@@ -1,7 +1,7 @@
 const cron = require('node-cron');
 const scrape = require("./common/scrape");
 const schedule = () => {    
-    cron.schedule('* * *', function () {                
+    cron.schedule("0 0 0 * * *", function () {                
         scrape.getBestSellers();
         scrape.getElectronicProducts();
     });
