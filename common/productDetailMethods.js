@@ -17,7 +17,7 @@ const scrapeProductDetail = async () => {
             const cluster = await Cluster.launch({
                 concurrency: Cluster.CONCURRENCY_CONTEXT,
                 maxConcurrency: 10,
-                timeout: 100000,
+                timeout: 300000,
                 puppeteerOptions: {
                     args: ["--no-sandbox", "--disabled-setupid-sandbox"]
                 }
