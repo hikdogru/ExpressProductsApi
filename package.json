@@ -19,7 +19,8 @@
     "express": "^4.18.1",
     "mongoose": "^6.4.2",
     "node-cron": "^3.0.0",
-    "puppeteer": "^15.3.0",
+    "puppeteer": "^15.4.0",
+    "puppeteer-cluster": "^0.23.0",
     "swagger-ui-express": "^4.4.0"
   }
 }

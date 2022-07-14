@@ -39,7 +39,7 @@ mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifie
     });
 
 
-app.get("/", (req, res) => {    
+app.get("/", (req, res) => {
     res.redirect("/api-docs");
 });
 
@@ -182,5 +182,10 @@ app.delete("/products/delete/:id", async (req, res) => {
 
 app.listen(process.env.PORT || port, () => {
     console.log("App is listening!");
-    cron.schedule();
+    const date = new Date();
+    let hour = date.getHours();
+    if (hour === 16) {
+        console.info("Cron is running... Hour is :", hour);
+        cron.schedule();
+    }
 });

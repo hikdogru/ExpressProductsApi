@@ -9,22 +9,28 @@ const { bestSellerUrl,
     electronicProductNameSelector,
     electronicProductPriceSelector,
     electronicProductRatingSelector,
-    electronicProductImageSelector } = require("./constants");
-const scrape = require("../seeds");
+    electronicProductImageSelector,
+    bestSellerDetailUrlSelector,
+    electronicDetailUrlSelector } = require("./constants");
+const productMethods = require("../common/productMethods");
 
 
-const getBestSellers = () => {
-    scrape.scrape(bestSellerUrl, bestSellerProductsSelector,
+
+const getBestSellers = async () => {
+    await productMethods.scrapeProduct(bestSellerUrl, bestSellerDetailUrlSelector,
+        bestSellerProductsSelector,
         bestSellerProductNameSelector, bestSellerProductPriceSelector,
         bestSellerProductRatingSelector, bestSellerProductImageSelector, "bestSeller")
 };
 
 
 const getElectronicProducts = () => {
-    scrape.scrape(electronicUrl, electronicProductsSelector,
+    productMethods.scrapeProduct(electronicUrl, electronicDetailUrlSelector,
+        electronicProductsSelector,
         electronicProductNameSelector, electronicProductPriceSelector,
         electronicProductRatingSelector, electronicProductImageSelector, "electronic")
 }
+
 
 
 module.exports = {
