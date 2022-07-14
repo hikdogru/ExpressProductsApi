@@ -8,8 +8,7 @@
             "name": "MIT",
             "url": "https://opensource.org/licenses/MIT"
         }
-    },   
-    "host" : "localhost:2000",
+    },       
     "basePath": "/",
     "tags": [
         {
