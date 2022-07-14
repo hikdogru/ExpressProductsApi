@@ -16,7 +16,7 @@ const productMethods = require("../common/productMethods");
 
 
 
-const getBestSellers = async () => {
+const getBestSellers =  async () => {
     await productMethods.scrapeProduct(bestSellerUrl, bestSellerDetailUrlSelector,
         bestSellerProductsSelector,
         bestSellerProductNameSelector, bestSellerProductPriceSelector,

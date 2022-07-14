@@ -1,10 +1,10 @@
 const cron = require('node-cron');
 const scrape = require("./common/scrape");
-const schedule = async () => {
-    cron.schedule("0 10 15 * * *", function () {
+const schedule =  () => {
+    cron.schedule("0 20 15 * * *", function () {
         console.info("Cron is running!!!");
-        await scrape.getBestSellers();
-        await scrape.getElectronicProducts();
+         scrape.getBestSellers();
+         scrape.getElectronicProducts();
     });
 };
 

@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer');
 
 mongo.connectToMongo;
 
-const scrapeProduct = async function (pageUrl, detailUrlSelector, productSelector, nameSelector, priceSelector, ratingSelector, imageSelector, productType) {
+const scrapeProduct = async  (pageUrl, detailUrlSelector, productSelector, nameSelector, priceSelector, ratingSelector, imageSelector, productType)=> {
 
     try {
         const scrape = await seeds.scrape(pageUrl)
