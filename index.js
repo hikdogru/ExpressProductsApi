@@ -102,12 +102,12 @@ app.get("/allproducts", async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     const productCount = await Product.find().count().exec();
     const totalPages = Math.ceil(productCount / limit);
-    const product = await Product.find({}, (err, products) => {
+    await Product.find({}, (err, products) => {
         if (err) {
             res.status(400).send(err);
         }
 
-        const uniqProducts = (Array.from(product)).filter((value, index, array) => {
+        const uniqProducts = (Array.from(products)).filter((value, index, array) => {
             return array.indexOf(value) === index
         });
 
