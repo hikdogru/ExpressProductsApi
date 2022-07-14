@@ -30,6 +30,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 const remoteMongoConnectionString = process.env.DB_URL || "mongodb://localhost:27017/shopApp";
 mongoose.connect(remoteMongoConnectionString, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -184,6 +185,7 @@ app.listen(process.env.PORT || port, () => {
     console.log("App is listening!");
     const date = new Date();
     let hour = date.getHours();
+    console.info("Hour is :", hour);
     if (hour === 16) {
         console.info("Cron is running... Hour is :", hour);
         cron.schedule();
