@@ -24,8 +24,8 @@ const getBestSellers = async () => {
 };
 
 
-const getElectronicProducts = () => {
-    productMethods.scrapeProduct(electronicUrl, electronicDetailUrlSelector,
+const getElectronicProducts = async () => {
+   await productMethods.scrapeProduct(electronicUrl, electronicDetailUrlSelector,
         electronicProductsSelector,
         electronicProductNameSelector, electronicProductPriceSelector,
         electronicProductRatingSelector, electronicProductImageSelector, "electronic")
