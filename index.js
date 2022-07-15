@@ -185,7 +185,7 @@ app.listen(process.env.PORT || port, () => {
     console.log("App is listening!");
     const date = new Date();
     let hour = date.getHours();
-    if (hour === 15) {
+    if (hour === 7) {
         console.info("Cron is running... Hour is :", hour);
         cron.schedule();
     }
