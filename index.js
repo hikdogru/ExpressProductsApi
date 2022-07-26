@@ -9,6 +9,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const port = 2000;
 const Product = require("./models/product");
+const ProductDetail = require("./models/productDetail");
 const swaggerUi = require("swagger-ui-express"),
     swaggerDocument = require("./swagger.json");
 const cors = require('cors');
@@ -92,10 +93,24 @@ app.get("/products/electronic", async (req, res) => {
 
 app.get("/products/:id", async (req, res) => {
     const { id } = req.params;
-    const products = await Product.findById(id);
-    if (products === null)
+    const product = await Product.findById(id);
+    const detail = await ProductDetail.find({ productId: id });
+    const productDetail = {
+        id: product._id,
+        name: product.name,
+        price: product.price,
+        rating: product.rating,
+        detail: {
+            images: detail[0].images,
+            vendor: detail[0].vendor,
+            description: detail[0].description,
+            features: detail[0].features
+        }
+    }
+
+    if (product === null)
         res.status(404).send("<h3 style='color:red'>Product not found!</h3>");
-    res.send(products);
+    res.send(productDetail);
 });
 
 app.get("/allproducts", async (req, res) => {
@@ -185,6 +200,8 @@ app.listen(process.env.PORT || port, () => {
     console.log("App is listening!");
     const date = new Date();
     let hour = date.getHours();
+    console.log("Hour :", hour);
+
     if (hour === 7) {
         console.info("Cron is running... Hour is :", hour);
         cron.schedule();
