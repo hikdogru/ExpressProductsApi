@@ -13,6 +13,8 @@ const productDetailTitleSelector = "#productTitle";
 const productDetailImagesSelector = "li[class*='imageThumbnail '] span[class*='a-button-text'] img";
 const productDetailVendorSelector = "#merchant-info > span:nth-child(1)";
 const productDetailFeaturesTableSelector = "#productOverview_feature_div > div table";
+const productDetailFeaturesName = "#productOverview_feature_div > div table tr td:nth-child(1)";
+const productDetailFeaturesValue = "#productOverview_feature_div > div table tr td:nth-child(2)";
 const productDetailDescriptionSelector = "#feature-bullets > ul";
 const productDetailMainSelector = "#dp-container";
 
@@ -47,6 +49,8 @@ module.exports = {
     productDetailFeaturesTableSelector,
     productDetailDescriptionSelector,
     productDetailMainSelector,
-    electronicDetailUrlSelector
+    electronicDetailUrlSelector,
+    productDetailFeaturesName,
+    productDetailFeaturesValue
 }
 

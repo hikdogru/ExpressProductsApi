@@ -3,7 +3,6 @@ const mongo = require("../models/mongo")
 const seeds = require("../seeds");
 const { amazonBaseUrl } = require("../common/constants");
 const productDetailMethods = require("../common/productDetailMethods");
-const puppeteer = require('puppeteer');
 
 mongo.connectToMongo;
 

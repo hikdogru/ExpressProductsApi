@@ -13,7 +13,14 @@ const productDetailSchema = new mongoose.Schema({
 
     vendor: String,
     description: String,
-    features: String,
+    features: [{
+        name: {
+            type: String
+        },
+        value: {
+            type: String
+        }
+    }],
     productId: String
 })
 

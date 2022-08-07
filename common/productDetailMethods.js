@@ -5,7 +5,9 @@ const { productDetailTitleSelector,
     productDetailVendorSelector,
     productDetailFeaturesTableSelector,
     productDetailDescriptionSelector,
-    productDetailMainSelector } = require("./constants");
+    productDetailMainSelector,
+    productDetailFeaturesName,
+    productDetailFeaturesValue } = require("./constants");
 const { Cluster } = require('puppeteer-cluster');
 
 
@@ -38,13 +40,34 @@ const scrapeProductDetail = async () => {
                 const description = (await element.$(productDetailDescriptionSelector)) !== null ? await element.$eval(productDetailDescriptionSelector, element => element.innerHTML.trim()) : ""
                 const features = (await element.$(productDetailFeaturesTableSelector)) !== null ?
                     await element.$eval(productDetailFeaturesTableSelector, element => element.innerHTML.trim()) : "";
+
+                let feature = [];
+                if (features.length > 0) {
+                    const featuresName = (await element.$(productDetailFeaturesTableSelector)) !== null ?
+                        await element.$$eval(productDetailFeaturesName, element => element.map(x => x.textContent)) : "";
+
+
+                    const featuresValue = (await element.$(productDetailFeaturesTableSelector)) !== null ?
+                        await element.$$eval(productDetailFeaturesValue, element => element.map(x => x.textContent)) : "";
+
+                    if (featuresName.length === featuresValue.length) {
+
+                        for (let i = 0; i < featuresName.length; i++) {
+                            feature.push({
+                                name: featuresName[i].trim(),
+                                value: featuresValue[i].trim()
+                            })
+                        }
+                    }
+                }
+
                 let productDetail = new ProductDetail({
                     name: name,
                     vendor: vendor,
                     productId: product._id,
                     images: images,
-                    description: description,
-                    features: features
+                    description: description,                    
+                    features : feature
                 });
 
                 const productDetailInDatabase = await ProductDetail.findOne({ productId: product._id });

@@ -65,7 +65,7 @@ app.get("/products/bestSellers", async (req, res) => {
         }
     }).limit(limit * 1)
         .skip((page - 1) * limit)
-        .clone();;
+        .clone();
 });
 
 app.get("/products/electronic", async (req, res) => {
@@ -202,7 +202,7 @@ app.listen(process.env.PORT || port, () => {
     let hour = date.getHours();
     console.log("Hour :", hour);
 
-    if (hour === 7) {
+    if (hour === 13) {
         console.info("Cron is running... Hour is :", hour);
         cron.schedule();
     }
