@@ -8,8 +8,8 @@
             "name": "MIT",
             "url": "https://opensource.org/licenses/MIT"
         }
-    },       
-    "host" : ["localhost:2000"] ,
+    },
+    "host": "",
     "basePath": "/",
     "tags": [
         {
@@ -32,7 +32,7 @@
                 "tags": [
                     "Products"
                 ],
-                "summary": "Get all products in system",                
+                "summary": "Get all products in system",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -428,8 +428,8 @@
                 },
                 "images": {
                     "type": "array",
-                    "items" : {
-                        "type" : "string"
+                    "items": {
+                        "type": "string"
                     }
                 },
                 "price": {
